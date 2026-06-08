@@ -1,6 +1,7 @@
 
 import './App.css';
 import "@mantine/core/styles.css";
+import "@mantine/carousel/styles.css";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from "./components/partials/Navbar.jsx";
 import { navItems } from './utlils/constants/navItems.js';
