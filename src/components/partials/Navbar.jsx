@@ -23,7 +23,7 @@ const Navbar = () => {
         {navItems.map((item, index) => (
           <Link
             key={index}
-            to={item.add}
+            to={item.path}
           >
             {item.name}
           </Link>
