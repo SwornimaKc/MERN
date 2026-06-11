@@ -12,7 +12,7 @@ const AdminDashboardLayout = () => {
         padding="md"
         header={{ height: 60 }}
         navbar={{
-          width: 300,
+          width: 180,
           breakpoint: 'sm',
           collapsed: { mobile: !opened },
         }}
@@ -33,6 +33,7 @@ const AdminDashboardLayout = () => {
             <Link
               key={index}
               to={item.path}
+              className="p-5"
             >
               {item.name}
             </Link>
