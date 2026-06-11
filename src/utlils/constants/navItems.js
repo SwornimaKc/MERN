@@ -8,3 +8,13 @@ export const navItems = [
     path:"/products",
   },
 ]
+export const dashbordNavItems = [
+  {
+    name: "Categories",
+    path:"/dashboard/categories",
+  },
+  {
+    name:"Products",
+    path:"/dashboard/products",
+  },
+]
