@@ -11,6 +11,7 @@ const AddCategories = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = { categoryName: categoryName, categoryImage: categoryImage };
+      const formatedData = categoryDto.send(data)
 
     setCategories([...categories, data]);
     setCategoryName("");
