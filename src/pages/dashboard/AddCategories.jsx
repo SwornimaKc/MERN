@@ -1,23 +1,39 @@
 import { Button, Modal, Switch, Table } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import React from "react";
+import React, { useState } from "react";
 
 const AddCategories = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const [categoryName, setCategoryName] = useState("");
+  const [categoryImage, setCategoryImage] = useState(null);
+  const [categories, setCategories] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const data = { categoryName: categoryName, categoryImage: categoryImage };
 
-    const formData = new FormData(e.target);
-    console.log("FormData Entries: ", e);
-    const data = {
-      categoryName: formData.get("categoryName"),
-      categoryImage: formData.get("categoryImage"),
-    };
-
-    console.log("Form Data:", data);
-    console.log("Image Name:", data.categoryImage.name);
+    setCategories([...categories, data]);
+    setCategoryName("");
+    setCategoryImage(null);
+    close();
   };
+
+  const rows = categories?.map((element, index) => (
+    <Table.Tr key={index}>
+      <Table.Td>{index + 1}</Table.Td>
+      <Table.Td>{element.categoryName}</Table.Td>
+      <Table.Td>{index + 1}</Table.Td>
+      <Table.Td>
+        <Switch defaultChecked />
+      </Table.Td>
+
+      <Table.Td>
+        <Button variant="outline" color="blue">
+          Edit
+        </Button>
+      </Table.Td>
+    </Table.Tr>
+  ));
 
   return (
     <main>
@@ -42,21 +58,7 @@ const AddCategories = () => {
             </Table.Tr>
           </Table.Thead>
 
-          <Table.Tbody>
-            <Table.Tr>
-              <Table.Td>1</Table.Td>
-              <Table.Td>Head Phones</Table.Td>
-              <Table.Td>10</Table.Td>
-              <Table.Td>
-                <Switch defaultChecked />
-              </Table.Td>
-              <Table.Td>
-                <Button variant="outline" color="blue">
-                  Edit
-                </Button>
-              </Table.Td>
-            </Table.Tr>
-          </Table.Tbody>
+          <Table.Tbody>{rows}</Table.Tbody>
         </Table>
       </section>
 
@@ -70,6 +72,8 @@ const AddCategories = () => {
               Category Name
             </label>
             <input
+              onChange={(e) => setCategoryName(e.target.value)}
+              value={categoryName}
               type="text"
               name="categoryName"
               placeholder="Enter category name"
@@ -91,6 +95,7 @@ const AddCategories = () => {
               file:rounded-lg file:border-0
               file:bg-blue-50 file:text-blue-600
               file:font-medium hover:file:bg-blue-100"
+              onChange={(e) => setCategoryImage(e.target.files[0])}
             />
           </div>
 
