@@ -1,6 +1,7 @@
 import { Button, Modal, Switch, Table } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React, { useState } from "react";
+import { categoryDto } from "../../utlils/formatters/categoriesDTO";
 
 const AddCategories = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -11,7 +12,8 @@ const AddCategories = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = { categoryName: categoryName, categoryImage: categoryImage };
-      const formatedData = categoryDto.send(data)
+      
+  const formatedData = categoryDto.send(data)
 
     setCategories([...categories, data]);
     setCategoryName("");
